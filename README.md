@@ -97,9 +97,40 @@ Keep video IDs consistent across the video, pose, reference pose, and motion fil
 
 ## Training
 
-Coming soon
+Launch training with `accelerate`:
 
+```bash
+accelerate launch --config_file accelerate_config_T2V.yaml \
+  examples/wanvideo/model_training/train.py \
+  --dataset_base_path data/raw_data \
+  --dataset_metadata_path xxxx.csv \
+  --data_file_keys video,pose_pkl,vace_reference_image,motion_sequence \
+  --height 832 \
+  --width 480 \
+  --dataset_repeat 1 \
+  --model_paths '["models/Wan-AI/Wan2.1-T2V-1.3B/diffusion_pytorch_model.safetensors","models/Wan-AI/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth","models/Wan-AI/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth"]' \
+  --learning_rate 1e-5 \
+  --num_epochs 20 \
+  --remove_prefix_in_ckpt "pipe.dit.,pipe.convert." \
+  --output_path ./models/train/kvq_retarget \
+  --trainable_models "dit,convert" \
+  --extra_inputs vace_reference_image
+```
 
+Key dataset arguments:
+
+- `--dataset_base_path`: Root directory of the source videos and related training files.
+- `--dataset_metadata_path`: Path to the metadata CSV file.
+- `--data_file_keys`: Metadata columns used by the dataloader. For RASA training, use `video,pose_pkl,vace_reference_image,motion_sequence`.
+
+Example metadata CSV:
+
+```csv
+video,prompt,pose_pkl,vace_reference_image,motion_sequence
+00001.mp4,"A person is dancing, posing like a model.",training_pose/00001.pkl,"[37, 39, 24, 25, 23]",joint_vecs/00001.npy
+```
+
+`vace_reference_image` stores the frame indices used as reference images. You can provide any valid frame indices from the corresponding source video.
 ## Inference
 
 Run the RASA evaluation script:
@@ -125,9 +156,7 @@ Generated clips and comparison videos are written to `output_results_clips/`.
 
 ## Evaluation
 
-We follow the evaluation protocol used by DisCo. Please refer to the official DisCo repository for metric details and evaluation setup:
-
-- [Wangt-CN/DisCo](https://github.com/Wangt-CN/DisCo)
+We follow the evaluation protocol used by DisCo. Please refer to the official DisCo repository for metric details and evaluation setup: [Wangt-CN/DisCo](https://github.com/Wangt-CN/DisCo)
 
 After preparing the generated videos and evaluation data, run:
 
@@ -137,6 +166,8 @@ sh gen_eval.sh
 
 ## Notes
 - For multi-GPU training, check `num_processes` in `accelerate_config_T2V.yaml` before launching.
+
+
 
 
 
