@@ -1,17 +1,12 @@
-﻿<h1 align="center">RASA: Disentangled Spatial-Motional Priors for Cross-Identity Character Animation</h1>
+﻿# RASA
 
 <p align="center">
-  <a href="#results">Results</a> |
-  <a href="#installation">Installation</a> |
-  <a href="#model-files">Models</a> |
-  <a href="#inference">Inference</a> |
-  <a href="#evaluation">Evaluation</a> |
-  <a href="https://github.com/Wangt-CN/DisCo">DisCo Eval</a>
+  <a href="https://hidream-ai.github.io/RASA/">Project Page</a>
 </p>
 
-RASA builds on DiffSynth-Studio and Wan2.1-T2V-1.3B for reference- and motion-guided human video generation. The repository contains the local DiffSynth codebase, WanVideo training scripts, custom validation code, model checkpoints, and prepared data folders.
 
-## Results
+
+## Video Demo
 
 <table>
   <tr>
@@ -141,7 +136,6 @@ sh gen_eval.sh
 
 ## Notes
 - For multi-GPU training, check `num_processes` in `accelerate_config_T2V.yaml` before launching.
-
 
 
 
