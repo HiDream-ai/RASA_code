@@ -32,7 +32,7 @@
 ### Environment Setup
 
 ```bash
-git clone https://github.com/your-repo/RASA.git
+git clone https://github.com/HiDream-ai/RASA_code.git
 cd RASA
 
 conda create -n rasa python=3.11 -y
