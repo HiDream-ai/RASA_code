@@ -1,10 +1,14 @@
 ﻿# RASA
 
 <p align="center">
-  <a href="https://hidream-ai.github.io/RASA/">Project Page</a>
+  <img src="assets/framework.png" alt="RASA framework" width="90%">
 </p>
 
-
+<p align="center">
+  <a href="https://hidream-ai.github.io/RASA/">Project Page</a> |
+  <a href="https://hidream-ai.github.io/RASA/">Paper</a> |
+  <a href="https://huggingface.co/HiDream-ai/RASA">Model</a>
+</p>
 
 ## Video Demo
 
@@ -133,6 +137,8 @@ sh gen_eval.sh
 
 ## Notes
 - For multi-GPU training, check `num_processes` in `accelerate_config_T2V.yaml` before launching.
+
+
 
 
 
