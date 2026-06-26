@@ -9,9 +9,12 @@
 ## Video Demo
 
 <p align="center">
-  <video src="assets/demo_1.mp4" width="45%" controls autoplay muted loop playsinline></video>
-  <video src="assets/demo_2.mp4" width="45%" controls autoplay muted loop playsinline></video>
+  <video src="https://github.com/user-attachments/assets/1b456d7b-4df5-4182-850f-9ae3264ca91d" width="45%" controls autoplay muted loop playsinline></video>
+  <video src="https://github.com/user-attachments/assets/50b8f82f-7bbc-4879-8557-79027e03c062" width="45%" controls autoplay muted loop playsinline></video>
 </p>
+
+
+
 
 ## Installation
 
