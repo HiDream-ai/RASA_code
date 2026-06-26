@@ -102,7 +102,7 @@ Coming soon
 
 ## Inference
 
-Run the custom Wan2.1-T2V-1.3B evaluation script:
+Run the RASA evaluation script:
 
 ```bash
 python examples/wanvideo/model_training/validate_lora/Wan2.1-T2V-1.3B_custom_eval_ref_CIM.py
