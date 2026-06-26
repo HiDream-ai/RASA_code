@@ -8,28 +8,10 @@
 
 ## Video Demo
 
-<table>
-  <tr>
-    <td align="center"><strong>Demo 1</strong></td>
-    <td align="center"><strong>Demo 2</strong></td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <video width="100%" controls muted loop playsinline>
-        <source src="./assets/demo_1.mp4" type="video/mp4">
-      </video>
-    </td>
-    <td width="50%">
-      <video width="100%" controls muted loop playsinline>
-        <source src="./assets/demo_2.mp4" type="video/mp4">
-      </video>
-    </td>
-  </tr>
-  <tr>
-    <td align="center"><a href="./assets/demo_1.mp4">Open demo_1.mp4</a></td>
-    <td align="center"><a href="./assets/demo_2.mp4">Open demo_2.mp4</a></td>
-  </tr>
-</table>
+<p align="center">
+  <video src="assets/demo_1.mp4" width="45%" controls autoplay muted loop playsinline></video>
+  <video src="assets/demo_2.mp4" width="45%" controls autoplay muted loop playsinline></video>
+</p>
 
 ## Installation
 
@@ -148,6 +130,7 @@ sh gen_eval.sh
 
 ## Notes
 - For multi-GPU training, check `num_processes` in `accelerate_config_T2V.yaml` before launching.
+
 
 
 
