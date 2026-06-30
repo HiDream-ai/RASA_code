@@ -175,7 +175,7 @@ If you find this work useful, please consider citing:
 @inproceedings{xiao2026rasa,
   title     = {RASA: Disentangled Spatial-Motional Priors for Cross-Identity Character Animation},
   author    = {Xiao, Zhen and Shen, Zhen and Qiu, Zhaofan and Yao, Ting and Liu, Xueliang and Mei, Tao},
-  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  booktitle = {European Conference on Computer Vision (ECCV)},
   year      = {2026}
 }
 ```
