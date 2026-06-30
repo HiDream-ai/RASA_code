@@ -1,4 +1,4 @@
-﻿# RASA
+﻿# RASA: Disentangled Spatial-Motional Priors for Cross-Identity Character Animation
 
 <p align="center">
   <img src="assets/framework.png" alt="RASA framework" width="90%">
@@ -97,40 +97,15 @@ Keep video IDs consistent across the video, pose, reference pose, and motion fil
 
 ## Training
 
-Launch training with `accelerate`:
+accelerate launch --config_file accelerate_config_T2V.yaml examples/wanvideo/model_training/train.py   --dataset_base_path data/raw_data   --dataset_metadata_path xxxx.csv --data_file_keys video,pose_pkl,vace_reference_image,motion_sequence  --height 832   --width 480   --dataset_repeat 1   --model_paths '["models/Wan-AI/Wan2.1-T2V-1.3B/diffusion_pytorch_model.safetensors","models/Wan-AI/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth","models/Wan-AI/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth"]'   --learning_rate 1e-5   --num_epochs 20   --remove_prefix_in_ckpt "pipe.dit.,pipe.convert."   --output_path "./models/train/kvq_retarget" --trainable_models "dit,convert" --extra_inputs vace_reference_image
 
-```bash
-accelerate launch --config_file accelerate_config_T2V.yaml \
-  examples/wanvideo/model_training/train.py \
-  --dataset_base_path data/raw_data \
-  --dataset_metadata_path xxxx.csv \
-  --data_file_keys video,pose_pkl,vace_reference_image,motion_sequence \
-  --height 832 \
-  --width 480 \
-  --dataset_repeat 1 \
-  --model_paths '["models/Wan-AI/Wan2.1-T2V-1.3B/diffusion_pytorch_model.safetensors","models/Wan-AI/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth","models/Wan-AI/Wan2.1-T2V-1.3B/Wan2.1_VAE.pth"]' \
-  --learning_rate 1e-5 \
-  --num_epochs 20 \
-  --remove_prefix_in_ckpt "pipe.dit.,pipe.convert." \
-  --output_path ./models/train/kvq_retarget \
-  --trainable_models "dit,convert" \
-  --extra_inputs vace_reference_image
-```
+--dataset_base_path 源视频所在路径
+--dataset_metadata_path csv文件
+video	prompt	pose_pkl	vace_reference_image	motion_sequence
+00001.mp4	A person is dancing, posing like a model.	training_pose/00001.pkl	[37, 39, 24, 25, 23]	joint_vecs/00001.npy
 
-Key dataset arguments:
+vace_reference_image 表示任意帧索引
 
-- `--dataset_base_path`: Root directory of the source videos and related training files.
-- `--dataset_metadata_path`: Path to the metadata CSV file.
-- `--data_file_keys`: Metadata columns used by the dataloader. For RASA training, use `video,pose_pkl,vace_reference_image,motion_sequence`.
-
-Example metadata CSV:
-
-```csv
-video,prompt,pose_pkl,vace_reference_image,motion_sequence
-00001.mp4,"A person is dancing, posing like a model.",training_pose/00001.pkl,"[37, 39, 24, 25, 23]",joint_vecs/00001.npy
-```
-
-`vace_reference_image` stores the frame indices used as reference images. You can provide any valid frame indices from the corresponding source video.
 ## Inference
 
 Run the RASA evaluation script:
@@ -168,7 +143,16 @@ sh gen_eval.sh
 - For multi-GPU training, check `num_processes` in `accelerate_config_T2V.yaml` before launching.
 
 
+## Citation
 
+```bibtex
+@inproceedings{xiao2026rasa,
+  title     = {RASA: Disentangled Spatial-Motional Priors for Cross-Identity Character Animation},
+  author    = {Xiao, Zhen and Shen, Zhen and Qiu, Zhaofan and Yao, Ting and Liu, Xueliang and Mei, Tao},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026}
+}
+```
 
 
 
